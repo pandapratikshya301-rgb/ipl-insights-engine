@@ -13,12 +13,12 @@ from sklearn.metrics import accuracy_score
 # -----------------------------------------------------------------------------
 st.set_page_config(
     page_title="IPL Analytics & Predictor",
-    page_icon="🏏",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Ultra Premium Light Mode CSS for Hackathon Dashboard
+# Ultra Premium Light Mode CSS for Dashboard
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
@@ -260,7 +260,7 @@ df_5yrs = df[df['season'].isin(recent_seasons)]
 # -----------------------------------------------------------------------------
 # 3. SIDEBAR NAVIGATION
 # -----------------------------------------------------------------------------
-st.sidebar.title("🏏 IPL Insights Engine")
+st.sidebar.title(" IPL Insights Engine")
 page = st.sidebar.radio("Navigate Analytics", [
     "📊 Visual Insights", 
     "🏟️ Venue Intelligence", 
@@ -271,7 +271,7 @@ page = st.sidebar.radio("Navigate Analytics", [
 ])
 
 st.sidebar.markdown("---")
-if st.sidebar.button("🚪 Secure Logout", type="secondary", use_container_width=True):
+if st.sidebar.button(" Secure Logout", type="secondary", use_container_width=True):
     st.session_state['authenticated'] = False
     st.rerun()
 
@@ -279,12 +279,12 @@ if st.sidebar.button("🚪 Secure Logout", type="secondary", use_container_width
 # PAGE 1: VISUAL INSIGHTS
 # -----------------------------------------------------------------------------
 if page == "📊 Visual Insights":
-    st.title("📈 IPL Performance & Strategy Analytics")
+    st.title(" IPL Performance & Strategy Analytics")
     
     toss_win_rate = match_df['toss_match_winner'].mean() * 100
     
     st.markdown(
-        f"### 💡 A Surprising Revelation\n"
+        f"###  A Surprising Revelation\n"
         f"> **Despite the intense strategic focus placed on the coin toss, winning it historicaly grants "
         f"teams a mere {toss_win_rate:.1f}% chance of winning the match, proving that raw in-play execution "
         f"completely overrides pre-match luck.**"
@@ -324,7 +324,7 @@ if page == "📊 Visual Insights":
         st.plotly_chart(fig_phase, use_container_width=True)
     
     st.write("---")
-    st.subheader(f"🏆 Elite Performers (Last 5 Seasons: {recent_seasons[0]}-{recent_seasons[-1]})")
+    st.subheader(f"Elite Performers (Last 5 Seasons: {recent_seasons[0]}-{recent_seasons[-1]})")
     t_col1, t_col2 = st.columns(2)
     
     with t_col1:
@@ -448,13 +448,13 @@ elif page == "⚔️ Player Matchups":
         
         st.write("")
         if dismissals == 0 and strike_rate > 130:
-            st.success(f"🔥 {selected_batter} completely dominates {selected_bowler}!")
+            st.success(f" {selected_batter} completely dominates {selected_bowler}!")
         elif strike_rate < 100 and dismissals > 0:
-            st.error(f"🛑 {selected_bowler} has kept {selected_batter} quiet and takes wickets.")
+            st.error(f"{selected_bowler} has kept {selected_batter} quiet and takes wickets.")
         elif dismissals > 2:
-            st.warning(f"🐇 {selected_bowler} is {selected_batter}'s bunny (multiple dismissals)!")
+            st.warning(f"{selected_bowler} is {selected_batter}'s bunny (multiple dismissals)!")
         else:
-            st.info("⚖️ A tightly contested rivalry.")
+            st.info(" A tightly contested rivalry.")
             
     else:
         st.warning(f"{selected_batter} and {selected_bowler} have not faced each other in the recorded historical data.")
@@ -512,7 +512,7 @@ elif page == "🕵️ Player Scouting Engine":
             m2.metric("Boundary Reliance %", f"{boundary_pct:.1f}%")
             
             st.write("---")
-            st.write("💡 **AI Scouting Note:**")
+            st.write(" **AI Scouting Note:**")
             if srs[2] > 160: 
                 st.success("Elite Finisher: Exceptional strike rate in the Death Overs. Must be dismissed early.")
             elif srs[0] > 140: 
@@ -694,7 +694,7 @@ else:
         st.success(narrative)
         
         st.write("---")
-        st.markdown("### 🔍 Model Explainability: Feature Importance")
+        st.markdown("###  Model Explainability: Feature Importance")
         st.write("Why did the AI make this prediction? Here is the relative weight of each factor in the Random Forest model:")
         importances = model.feature_importances_
         features = ['Team 1', 'Team 2', 'Toss Winner', 'Toss Decision', 'Venue']
